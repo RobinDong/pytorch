@@ -1792,7 +1792,7 @@
     CUDA: resize_cuda_
     QuantizedCPU: quantized_resize_cpu_
 
-- func: empty_quantized(int[] size, Tensor qtensor, *, ScalarType? dtype=None, Layout? layout=None, Device? device=None, MemoryFormat? memory_format=None) -> Tensor
+- func: empty_quantized(int[] size, Tensor qtensor, *, ScalarType? dtype=None, Layout? layout=None, Device? device=None, bool? pin_memory=None, MemoryFormat? memory_format=None) -> Tensor
   category_override: factory
   variants: function
   dispatch:
@@ -5146,13 +5146,13 @@
 - func: quantize_per_channel(Tensor self, Tensor scales, Tensor zero_points, int axis, ScalarType dtype) -> Tensor
   variants: function
   dispatch:
-    CPU, CUDA: quantize_per_channel_cpu
+    CPU, CUDA: quantize_per_channel
 
 - func: dequantize.self(Tensor self) -> Tensor
   variants: function, method
   dispatch:
     CPU: dequantize_cpu
-    QuantizedCPU, QuantizedCUDA: dequantize_quantized_cpu
+    QuantizedCPU, QuantizedCUDA: dequantize_quantized
 
 - func: dequantize.tensors(Tensor[] tensors) -> Tensor[]
   variants: function
